@@ -4,6 +4,7 @@ import pyttsx3
 import datetime
 import os
 import subprocess as sp
+import webbrowser
 
 # Initialize the speech recognition engine.
 r = sr.Recognizer()
@@ -43,6 +44,25 @@ def open_camera():
     sp.run("start microsoft.windows.camera:", shell=True)
 
 
+def ds_news():
+    webbrowser.open("https://www.kdnuggets.com")
+    webbrowser.open(
+        "https://www.analyticsvidhya.com/blog/category/guide/?utm_source=blog_navbar&utm_medium=machine_learning_button"
+    )
+    webbrowser.open("https://www.analyticsvidhya.com/blog/")
+    webbrowser.open("https://realpython.com/")
+    webbrowser.open("https://engineering.atspotify.com/category/data-science/")
+    webbrowser.open("https://blog.duolingo.com/tag/engineering/")
+    webbrowser.open("https://netflixtechblog.com/")
+    webbrowser.open(
+        "https://www.datasciencecentral.com/category/technical-topics/data-science/"
+    )
+    webbrowser.open(
+        "https://www.datasciencecentral.com/category/technical-topics/tools-and-techniques/"
+    )
+    webbrowser.open("https://www.advancinganalytics.co.uk/blog")
+
+
 # Define the main function.
 def main():
     greet_user()
@@ -76,6 +96,8 @@ def main():
             open_google()
         elif text.lower() == "open camera":
             open_camera()
+        elif text.lower() == "data news":
+            ds_news()
         elif text.lower() == "exit" or text.lower() == "quit":
             break
 

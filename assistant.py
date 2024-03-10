@@ -68,6 +68,7 @@ def main():
     greet_user()
 
     # Continuously listen for voice commands.
+    i = 0
     while True:
         # Wait for the user to say something.
         with sr.Microphone() as source:
@@ -80,6 +81,9 @@ def main():
             print("You said: {}".format(text))
         except sr.UnknownValueError:
             print("Sorry, I didn't understand that.")
+            i += 1
+            if i > 4:
+                break
             continue
         except sr.RequestError:
             print("Sorry, there was a problem with the speech recognition service.")

@@ -49,11 +49,6 @@ def open_google():
     os.system("Start https://www.google.com")
 
 
-# def open_camera():
-"""Assistant opens up my web cam"""
-#     sp.run("start microsoft.windows.camera:", shell=True)
-
-
 def ds_news():
     """Assistant fetching and opening all my favorite data science news"""
     webbrowser.open("https://www.kdnuggets.com")
@@ -70,6 +65,7 @@ def ds_news():
 
 # Define the main function.
 def main():
+    """main function for conversing with the assistant"""
     greet_user()
 
     # Continuously listen for voice commands.
@@ -101,11 +97,11 @@ def main():
             now = datetime.datetime.now()
             time = now.strftime("%H:%M")
             speak(f"The time is {time}")
-        elif text.lower() == "open google":
+        elif "open google" in text.lower():
             open_google()
         # elif text.lower() == "open camera":
         #     open_camera()
-        elif text.lower() == "data news":
+        elif "data news" in text.lower() or "daily websites" in text.lower():
             ds_news()
         elif text.lower() == "how is the weather":
             speak(weather())

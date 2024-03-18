@@ -9,8 +9,14 @@ import webbrowser
 
 import pyttsx3
 import speech_recognition as sr
+from transformers import AutoModelForQuestionAnswering, AutoTokenizer, pipeline
 
 from weather import weather
+
+MODEL_NAME = "deepset/tinyroberta-squad2"
+
+model = AutoModelForQuestionAnswering.from_pretrained(MODEL_NAME)
+tokenizer = AutoTokenizer.from_pretrained(MODEL_NAME)
 
 # Initialize the speech recognition engine.
 r = sr.Recognizer()
@@ -107,6 +113,14 @@ def main():
             speak(weather())
         elif text.lower() == "exit" or text.lower() == "quit":
             break
+        else:
+            nlp = pipeline("question-answering", model=MODEL_NAME, tokenizer=MODEL_NAME)
+            qa_input = {
+                "question": text,
+                "context": "You are a helpful assistant named Alfred.",
+            }
+            res = nlp(qa_input)
+            speak(res["start_logits"][0][0])
 
 
 # Run the main function.
